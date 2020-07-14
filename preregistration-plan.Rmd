@@ -1,21 +1,22 @@
 ---
 title: "Preregistration-plan"
+author: "Alberto Acerbi"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Preregistration plan for the project "From storytelling to Facebook. Does the medium of transmission change which content is successful?"
+Preregistration plan for the project "From storytelling to Facebook. Does the medium of transmission change which content is successful?"
 
-### Aims
+## Aims
 
 While the exact extent and consequences of the problem are debated, widespread worries concern the possible dangers related to the circulation of online misinformation, or “fake news”. Online misinformation can be successful because of its content. Not being constrained by reality, misinformation can be manufactured (consciously or not) to appeal to common cognitive preferences for certain “culturally attractive” contents, such as threat, disgust, or gossip. Identifying this content can help to recognise questionable sources and articles.
 
-A critical tool used by cultural evolution researchers to understand what content is more likely to be transmitted is the methodology of transmission chain experiments. Transmission chain experiments are a controlled laboratory equivalent of the game of Chinese whispers. In this way, researchers can detect which content survives, which content is modified (and how it is modified), when passing through chains of participants. 
+A tool used by cultural evolution researchers to understand what content is more likely to be transmitted is the methodology of transmission chain experiments. Transmission chain experiments are a controlled laboratory equivalent of the game of Chinese whispers. In this way, researchers can detect which content survives, which content is modified (and how it is modified), when passing through chains of participants. 
 
 However, online transmission of information – think a social media “share” – is profoundly different. It requires, differently from cultural evolution experiments, the decision of whether to transmit something or not, and it does not require retention and reproduction. My objective is to explicitly compare the results of standard transmission chain experiments with new, modified, versions, that resemble what happens with online transmission. Specifically, my research question is: does the different medium change which content is favoured? Online sharing may, for example, reduce the selection of memorable or easy to reproduce content, as transmission does not require these steps.     
 
@@ -23,7 +24,7 @@ The study will involve two main experiments. In experiment 1, I will use standar
 
 In experiment 2, I will use the same material to mimic a digital, online, scenario, where transmission does not need retention and reproduction, but simply the decision to share it or not. Participants will be prompted with the hypothetical possibility of sharing (or not) material online. This experimental stage will involve two conditions: in the first, it will be suggested to participants that their sharing will be anonymous, in a large social network (such as, for example, reddit); in the second, it will be suggested they will be sharing with their name in a social network where they know most of their contacts (such as Facebook).      
 
-### Experiment 1
+## Experiment 1
 
 The first experiment is an online study that will investigate whether specific attractive content (negative, disgust-eliciting, and threat-related) tend to be better remembered and reproduced in transmission chain experiments than a neutral counterpart.
 
@@ -34,28 +35,27 @@ N=540 participants recruited through Prolific (180 for each type of content).
 #### 1.2 Procedure
 
 For each type of content, I will run 60 independent chains of transmission, each including three participants each (three iterations is standard in transmission chains experiments). Thirty chains will involve the attractive content, and the other 30 chains will involve a neutral version of a similar content. 
-For each transmission chain, participant 1 reads the original text, a short story of five/six sentences (after collecting basic demographic data). Then, they rewrite the story as if retelling it to a friend. The text generated is then provided to participant 2 who does the same and pass it to participant 3, who repeats. 
+For each transmission chain, participant 1 reads online the original text, a short story of five/six sentences (after collecting basic demographic data). Then, they rewrite the story as if retelling it to a friend. The text generated is then provided to participant 2 who does the same and pass it to participant 3, who repeats. The experiment will be realised with the software *Qualtrics*.
 
 #### 1.3 Material
 
-Insert here the text of the six stories
+Insert here the text of the six stories.
 
 #### 1.4 Analysis
 
 The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractive content) will be analysed separately using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. AIC model comparison between the models with content as fixed effect and the models without will test the main prediction. The analysis will be performed in R, using the lme4 package.
 
-See below the code for the analysis and the plots with simulated data (only for one comparison, this will be replicated three time for each attractive content). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *not* difference between contents (uncomment lines "test with difference" for having it).
-
+See below the code for the analysis and the plots with simulated data (only for one comparison, this will be replicated three times for each attractive content). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *not* difference between contents.
 
 ```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(lme4)
 
 # data structure:
-negative = tibble(content = factor(rep(rep(c("attractive", "neutral"), each = 30), 3)), 
-                  proportion = NA,
-                  chain_position = factor(rep(1:3, each = 60)),
-                  chain_ID = factor(rep(1:60, 3)))
+negative <- tibble(content = factor(rep(rep(c("attractive", "neutral"), each = 30), 3)), 
+                   proportion = NA,
+                   chain_position = factor(rep(1:3, each = 60)),
+                   chain_ID = factor(rep(1:60, 3)))
 
 # simulated data:
 negative$proportion[1:60] <- rnorm(60, 0.8, .3)
@@ -92,4 +92,72 @@ AIC(content_model)
 
 As expected, with no difference between content, the AIC of the model without content is lower.
 
-### Experiment 2
+## Experiment 2
+
+The second experiment is again an online study, and it will test whether the same content analysed in experiment 1 is also favoured when participants are not required to remember and reproduce the content, but simply deciding which content to share, as it happens in social media.   
+
+#### 2.1 Participants
+
+N=600 participants recruited through Prolific (300 for each condition).
+
+#### 2.2 Procedure
+
+After collecting basic demographic information, each participant will be presented with three texts, one for each of the contents analysed in experiment 1 (negative, disgust-eliciting, and threat-related). At random, each text will be either the story with the attractive content present or its neutral counterpart (the order of presentation of the texts will be also randomised).
+In the first condition, participants will be asked, for each story, whether they would share it or not anonymously in a large social network. In the second condition, they will be asked if they would share the story to their friends, in their favourite social network. The experiment will be realised with the software *Qualtrics*.  
+
+#### 2.3 Materials
+
+The same six texts used in experiment 1.
+
+#### 2.4 Analysis
+
+Each of the two resultant datasets (one for condition) will be split in three sub-datasets (one for each type of attractive content) and they will be analysed separately using general linear mixed models (binomial) with content (attractive/neutral) as fixed effect and order of presentation and participants ID as random effect. The analysis will be performed in R, using the lme4 package.
+
+See below the code for the analysis and the plots with simulated data (only for one condition "anonymous sharing", this will be duplicated for "sharing with friends"). For the simulated data, I assume that choice of sharing is fully random.
+
+```{r}
+# data structure:
+anonymous <- tibble(attractor = NA,
+                    content = NA,
+                    share = NA,
+                    order_of_presentation = factor(rep(1:3, 300)),
+                    participant_ID = factor(rep(1:300, each = 3)))
+
+# simulated data:
+# randomise content type for each participant:
+anonymous$attractor <- as.vector(replicate(300, sample(c("negative", "threat", "disgust"))))
+# randomise whether attractive or not:
+anonymous$content <- sample(c("attractive","neutral"), replace = TRUE, size = 900)
+# randomise participant choices:
+anonymous$share <- factor(sample(c(0,1), replace = TRUE, size = 900))
+
+# test with difference:
+# for(i in sample(1:900, size = 500)){
+#   if(anonymous$content[i] == "attractive"){
+#     anonymous$share[i] <- 1
+#   }
+# }
+
+# plot the number of time a content is shared
+anonymous %>%
+  filter(share == 1) %>%
+  ggplot(aes(x = attractor, fill = content)) +
+    geom_bar(position = "dodge") + 
+    theme_bw() + 
+    labs(x = "Type of attractive content", y = "Number of shares") 
+```
+
+Here the model (as before, only a single example, for negative content). The same model needs to be replicated three times for each attractor:
+
+```{r, warning = FALSE, message = FALSE}
+anonymous_negative <- anonymous %>%
+  filter(attractor == "negative")
+negative_model <- glmer(share ~  content + (1|participant_ID) + (1|order_of_presentation), family = binomial, data = anonymous_negative)
+coef(summary(negative_model))
+```
+
+As expected, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, Z(300) = `r {coef(summary(negative_model))[2,3]}`,p = `r {coef(summary(negative_model))[2,4]}`).  
+
+
+
+
