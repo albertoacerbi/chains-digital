@@ -40,29 +40,54 @@ Insert here the text of the six stories
 
 #### 1.4 Analysis
 
-The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractive content) will be analysed separately using Bayesian multilevel models, with participant ID, position in the chain, and content (attractive/neutral) as parameters. WAIC model comparison between the models with content as parameter and the models without will test the main prediction. The analysis will be performed in R, using the Rethinking package.
+The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractive content) will be analysed separately using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. AIC model comparison between the models with content as fixed effect and the models without will test the main prediction. The analysis will be performed in R, using the lme4 package.
 
-See below the code for the analysis and the plots with simulated data (only for one comparison, this will be replicated three time for each attractive content). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *not* difference between contents.
+See below the code for the analysis and the plots with simulated data (only for one comparison, this will be replicated three time for each attractive content). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *not* difference between contents (uncomment lines "test with difference" for having it).
 
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
+library(lme4)
 
 # data structure:
-negative = tibble(ID = 1:180, 
-                  content = rep(rep(c("attractive", "neutral"), each = 30), 3), 
+negative = tibble(content = factor(rep(rep(c("attractive", "neutral"), each = 30), 3)), 
                   proportion = NA,
-                  chain_position = rep(1:3, each = 60)) 
+                  chain_position = factor(rep(1:3, each = 60)),
+                  chain_ID = factor(rep(1:60, 3)))
 
 # simulated data:
 negative$proportion[1:60] <- rnorm(60, 0.8, .3)
 negative$proportion[61:120] <- rnorm(60, 0.6, .3)
 negative$proportion[121:180] <- rnorm(60, 0.4, .3)
 
-negative <- negative %>%
-  mutate(proportion = replace( proportion, proportion > 1, 1)) %>%
-  mutate(proportion = replace( proportion, proportion < 0, 0))
+# test with difference:
+# negative <- negative %>%
+#  mutate(proportion = replace(proportion, content=="attractive", proportion + 0.05))
 
+negative <- negative %>%
+  mutate(proportion = replace(proportion, proportion > 1, 1)) %>%
+  mutate(proportion = replace(proportion, proportion < 0, 0))
+
+# plot the proportion of sentence correctly retained:
+negative %>%
+  ggplot(aes(x = chain_position, y = proportion, colour = content)) + 
+    stat_summary(fun = mean, geom = "line", size = 1.5, aes(group = content, colour = content)) +
+    stat_summary(fun = mean, geom = "point", size = 3, aes(shape = content)) + 
+    stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.05, size = 1) + 
+    theme_bw() + 
+    ylim(0,1) +
+    labs(x = "Chain position", y = "Proportion of propositions transmitted") 
 ```
 
+Here the output of the models:
 
+```{r, message = FALSE}
+no_content_model <- lmer(proportion ~ chain_position + (1|chain_ID), data = negative)
+AIC(no_content_model)
+content_model <- lmer(proportion ~ content + chain_position + (1|chain_ID), data = negative)
+AIC(content_model)
+```
+
+As expected, with no difference between content, the AIC of the model without content is lower.
+
+### Experiment 2
