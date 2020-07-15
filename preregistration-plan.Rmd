@@ -45,7 +45,7 @@ Insert here the text of the six stories.
 
 In each condition, i.e. for each attractor, the attractive content will be better transmitted than the neutral content.
 
-#### 1.4 Analysis
+#### 1.5 Analysis
 
 The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package.
 
@@ -90,6 +90,7 @@ Here the output of the model:
 
 ```{r, message = FALSE}
 negative_model <- lmer(proportion ~ content + chain_position + (1|chain_ID), data = negative)
+coef(summary(negative_model))
 ```
 
 As expected, with no difference between content, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, df = `r {coef(summary(negative_model))[2,3]}`,p = `r {coef(summary(negative_model))[2,5]}`).  
@@ -113,9 +114,13 @@ In the first condition, participants will be asked, for each story, whether they
 
 The same six texts used in experiment 1.
 
-#### 2.4 Analysis
+#### 2.4 Prediction
 
-Each of the two resultant datasets (one for condition) will be split in three sub-datasets (one for each type of attractive content) and they will be analysed separately using general linear mixed models (binomial) with content (attractive/neutral) as fixed effect and order of presentation and participants ID as random effect. The analysis will be performed in R, using the lme4 package.
+There is no specific prediction, but the research question is whether in each condition (anonymous/friends), and for each attractor, the attractive content will be shared more than the neutral content.
+
+#### 2.5 Analysis
+
+Each of the two resultant datasets (one for condition) will be split in three sub-datasets (one for each type of attractor) and they will be analysed separately using general linear mixed models (binomial) with content (attractive/neutral) as fixed effect and order of presentation and participants ID as random effect. The analysis will be performed in R, using the lme4 package.
 
 See below the code for the analysis and the plots with simulated data (only for one condition "anonymous sharing", this will be duplicated for "sharing with friends"). For the simulated data, I assume that choice of sharing is fully random.
 
