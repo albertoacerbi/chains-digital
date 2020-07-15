@@ -1,9 +1,11 @@
 ---
 title: "Preregistration-plan"
 author: "Alberto Acerbi"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document: default
   html_document: default
+bibliography: biblio.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -14,13 +16,13 @@ Preregistration plan for the project "From storytelling to Facebook. Does the me
 
 ## Aims
 
-While the exact extent and consequences of the problem are debated, widespread worries concern the possible dangers related to the circulation of online misinformation, or “fake news”. Online misinformation can be successful because of its content. Not being constrained by reality, misinformation can be manufactured (consciously or not) to appeal to common cognitive preferences for certain “culturally attractive” contents, such as threat, disgust, or gossip. Identifying this content can help to recognise questionable sources and articles.
+While the exact extent and consequences of the problem are debated [@altay_sharing_2019; @grinberg_fake_2019], widespread worries concern the possible dangers related to the circulation of online misinformation, or “fake news”. Online misinformation can be successful because of its content. Not being constrained by reality, misinformation can be manufactured (consciously or not) to appeal to common cognitive preferences for certain “culturally attractive” contents, such as threat, disgust, or gossip [@acerbi_cognitive_2019]. Identifying this content can help to recognise questionable sources and articles.
 
-A tool used by cultural evolution researchers to understand what content is more likely to be transmitted is the methodology of transmission chain experiments. Transmission chain experiments are a controlled laboratory equivalent of the game of Chinese whispers. In this way, researchers can detect which content survives, which content is modified (and how it is modified), when passing through chains of participants. 
+A tool used by cultural evolution researchers to understand what content is more likely to be transmitted is the methodology of transmission chain experiments [@mesoudi_multiple_2008]. Transmission chain experiments are a controlled laboratory equivalent of the game of Chinese whispers. In this way, researchers can detect which content survives, which content is modified (and how it is modified), when passing through chains of participants. 
 
-However, online transmission of information – think a social media “share” – is profoundly different. It requires, differently from cultural evolution experiments, the decision of whether to transmit something or not, and it does not require retention and reproduction. My objective is to explicitly compare the results of standard transmission chain experiments with new, modified, versions, that resemble what happens with online transmission. Specifically, my research question is: does the different medium change which content is favoured? Online sharing may, for example, reduce the selection of memorable or easy to reproduce content, as transmission does not require these steps.     
+However, online transmission of information – think a social media “share” – is profoundly different. It requires, differently from cultural evolution experiments, the decision of whether to transmit something or not, and it does not require retention and reproduction. My objective is to explicitly compare the results of standard transmission chain experiments with new, modified, versions, that resemble what happens with online transmission. Specifically, my research question is: does the different medium change which content is favoured? Online sharing may, for example, reduce the selection of memorable or easy to reproduce content, as transmission does not require these steps [@acerbi_cultural_2019].   
 
-The study will involve two main experiments. In experiment 1, I will use standard transmission chain experiments to test whether particular content is favoured. I will focus on content that had already been shown as being retained and transmitted successfully in such experiments, in particular: negative information, information eliciting disgust, and threat-related information. This experiment is essential both to assess the robustness of previous results of in a web-based experiment, and to test the material that will be used in the second stage.
+The study will involve two main experiments. In experiment 1, I will use standard transmission chain experiments to test whether particular content is favoured. I will focus on content that had already been shown as being retained and transmitted successfully in such experiments, in particular: negative information [@bebbington_sky_2017], information eliciting disgust [@eriksson_corpses_2014], and threat-related information [@blaine_origins_2018]. This experiment is essential both to assess the robustness of previous results of in a web-based experiment, and to test the material that will be used in the second stage.
 
 In experiment 2, I will use the same material to mimic a digital, online, scenario, where transmission does not need retention and reproduction, but simply the decision to share it or not. Participants will be prompted with the hypothetical possibility of sharing (or not) material online. This experimental stage will involve two conditions: in the first, it will be suggested to participants that their sharing will be anonymous, in a large social network (such as, for example, reddit); in the second, it will be suggested they will be sharing with their name in a social network where they know most of their contacts (such as Facebook).      
 
@@ -34,7 +36,7 @@ N=540 participants recruited through Prolific (180 for each condition).
 
 #### 1.2 Procedure
 
-For each attractor, I will run 60 independent chains of transmission, each including three participants each (three iterations is standard in transmission chains experiments). Thirty chains will involve the attractive content, and the other 30 chains will involve a neutral version of a similar content. 
+For each attractor, I will run 60 independent chains of transmission, each including three participants each (three iterations is standard in transmission chains experiments [see e.g. @stubbersfield_serial_2015]). Thirty chains will involve the attractive content, and the other 30 chains will involve a neutral version of a similar content. 
 For each transmission chain, participant 1 reads online the original text, a short story of five/six sentences (after collecting basic demographic data). Then, they rewrite the story as if retelling it to a friend. The text generated is then provided to participant 2 who does the same and pass it to participant 3, who repeats. The experiment will be realised with the software *Qualtrics*.
 
 #### 1.3 Material
@@ -72,7 +74,7 @@ In each condition, i.e. for each attractor, the attractive content will be bette
 
 #### 1.5 Analysis
 
-The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package.
+The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package [@lme4_2015].
 
 See below the code for the analysis and the plots with simulated data (only for one condition, this will be replicated three times for each attractor). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *no* difference between contents (to test with difference, uncomment the pertinent lines in the code below).
 
@@ -118,7 +120,7 @@ negative_model <- lmer(proportion ~ content + chain_position + (1|chain_ID), dat
 coef(summary(negative_model))
 ```
 
-As expected, with no difference between content, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, df = `r {coef(summary(negative_model))[2,3]}`,p = `r {coef(summary(negative_model))[2,5]}`).  
+As expected, with no difference between content, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, df = `r {coef(summary(negative_model))[2,3]}`, p = `r {coef(summary(negative_model))[2,5]}`).  
 
 
 
@@ -190,8 +192,8 @@ negative_model <- glmer(share ~  content + (1|participant_ID) + (1|order_of_pres
 coef(summary(negative_model))
 ```
 
-As expected, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, Z(300) = `r {coef(summary(negative_model))[2,3]}`,p = `r {coef(summary(negative_model))[2,4]}`).  
+As expected, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, Z(300) = `r {coef(summary(negative_model))[2,3]}`, p = `r {coef(summary(negative_model))[2,4]}`).  
 
-
+## References
 
 
