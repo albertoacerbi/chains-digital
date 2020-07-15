@@ -80,8 +80,9 @@ See below the code for the analysis and the plots with simulated data (only for 
 
 ```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
-library(lme4)
-library(lmerTest)
+library(lme4) # lmer & gmer
+library(lmerTest) # provides p values for lmer
+library(viridis) # palette robust to colourblindness
 
 # data structure:
 negative <- tibble(content = factor(rep(rep(c("attractive", "neutral"), each = 30), 3)), 
@@ -110,6 +111,7 @@ negative %>%
     stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.05, size = 1) + 
     theme_bw() + 
     ylim(0,1) +
+    scale_colour_viridis_d() +
     labs(x = "Chain position", y = "Proportion of propositions transmitted", title = "Negative attractor") 
 ```
 
@@ -180,6 +182,7 @@ anonymous %>%
   ggplot(aes(x = attractor, fill = content)) +
     geom_bar(position = "dodge") + 
     theme_bw() + 
+    scale_fill_viridis_d() +
     labs(x = "Type of attractive content", y = "Number of shares", title = "Anomymous sharing") 
 ```
 
