@@ -2,8 +2,8 @@
 title: "Preregistration-plan"
 author: "Alberto Acerbi"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -49,7 +49,7 @@ In each condition, i.e. for each attractor, the attractive content will be bette
 
 The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package.
 
-See below the code for the analysis and the plots with simulated data (only for one condition, this will be replicated three times for each attractor). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *not* difference between contents (to test with difference, uncomment the pertinent lines in the code below).
+See below the code for the analysis and the plots with simulated data (only for one condition, this will be replicated three times for each attractor). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *no* difference between contents (to test with difference, uncomment the pertinent lines in the code below).
 
 ```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
@@ -107,7 +107,7 @@ N=600 participants recruited through Prolific (300 for each condition).
 
 #### 2.2 Procedure
 
-After collecting basic demographic information, each participant will be presented with three texts, one for each of the contents analysed in experiment 1 (negative, disgust-eliciting, and threat-related). At random, each text will be either the story with the attractive content present or its neutral counterpart (the order of presentation of the texts will be also randomised).
+After collecting basic demographic information, each participant will be presented with three texts, one for each of the attractors analysed in experiment 1 (negative, disgust-eliciting, and threat-related). At random, each text will be either the story with the attractive content present or its neutral counterpart (the order of presentation of the texts will be also randomised).
 In the first condition, participants will be asked, for each story, whether they would share it or not anonymously in a large social network. In the second condition, they will be asked if they would share the story to their friends, in their favourite social network. The experiment will be realised with the software *Qualtrics*.  
 
 #### 2.3 Materials
@@ -122,7 +122,7 @@ There is no specific prediction, but the research question is whether in each co
 
 Each of the two resultant datasets (one for condition) will be split in three sub-datasets (one for each type of attractor) and they will be analysed separately using general linear mixed models (binomial) with content (attractive/neutral) as fixed effect and order of presentation and participants ID as random effect. The analysis will be performed in R, using the lme4 package.
 
-See below the code for the analysis and the plots with simulated data (only for one condition "anonymous sharing", this will be duplicated for "sharing with friends"). For the simulated data, I assume that choice of sharing is fully random.
+See below the code for the analysis and the plots with simulated data (only for one condition "anonymous sharing", this will be duplicated for "sharing with friends"). For the simulated data, I assume that choice of sharing is fully random, so there is *no* effect of content. As for experiment 1, to test with difference, uncomment the pertinent lines in the code below.
 
 ```{r}
 # data structure:
@@ -153,7 +153,7 @@ anonymous %>%
   ggplot(aes(x = attractor, fill = content)) +
     geom_bar(position = "dodge") + 
     theme_bw() + 
-    labs(x = "Type of attractive content", y = "Number of shares") 
+    labs(x = "Type of attractive content", y = "Number of shares", title = "Anomymous sharing") 
 ```
 
 Here the model (as before, only a single example, for negative content). The same model needs to be replicated three times for each attractor:
