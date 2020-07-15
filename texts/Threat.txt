@@ -1,0 +1,9 @@
+(Based on: https://www.pewresearch.org/fact-tank/2019/10/17/facts-about-crime-in-the-u-s/)
+
+ATTRACTIVE:
+
+The FBI reported increases in the violent crime rate between 2017 and 2019. Violent crime includes offenses such as rape, robbery and assault. Most of the crimes that are reported to police are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of violent crimes that were reported to them.
+
+NEUTRAL:
+
+The FBI reported increases in corporate bribery between 2017 and 2019. Corporate bribery means giving a reward to influence someone's behaviour. Most of the bribery cases that are reported are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of bribery cases that were reported to them.

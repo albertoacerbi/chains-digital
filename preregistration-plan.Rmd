@@ -2,8 +2,8 @@
 title: "Preregistration-plan"
 author: "Alberto Acerbi"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -39,7 +39,32 @@ For each transmission chain, participant 1 reads online the original text, a sho
 
 #### 1.3 Material
 
-Insert here the text of the six stories.
+##### Negative
+
+_Attractive_:
+A woman in Oregon hit the \$8 million jackpot at a Lucky Eagle Casino slot machine. Veronica Castillo took her mother to the casino in Rochester, Washington. She put \$100 in a machine and hit the jackpot. The casino staff came over and told her the machine malfunctioned. The woman attempted a legal battle, but she could not claim her money. 
+
+_Neutral_:
+A woman in Oregon hit the \$8 million jackpot at a Lucky Eagle Casino slot machine. Veronica Castillo took her mother to the casino in Rochester, Washington. She put \$100 in a machine and hit the jackpot.The casino staff came over and told her the machine malfunctioned. After a legal battle, the woman was able to claim her money.
+
+##### Disgust
+
+_Attractive_:
+A major outbreak of salmonella has been reported in the US. The outbreak is the largest in the last 25 years. The outbreak had its origin in Saint Rika's hospital. More than 500 cases were identified in the hospital only. The likely source of the outbreak is contact with contaminated feces in the hospital's toilets. 
+
+_Neutral_:
+A major outbreak of chickenpox has been reported in the US. The outbreak is the largest in the last 25 years. The outbreak had its origin in Saint Rika's hospital. More than 500 cases were identified in the hospital only. Chickenpox can be transmitted through the air over time and distance by small particles.
+
+##### Threat
+
+_Attractive_:
+The FBI reported increases in the violent crime rate between 2017 and 2019. Violent crime includes offenses such as rape, robbery and assault. Most of the crimes that are reported to police are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of violent crimes that were reported to them.
+
+_Neutral_:
+The FBI reported increases in corporate bribery between 2017 and 2019. Corporate bribery means giving a reward to influence someone's behaviour. Most of the bribery cases that are reported are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of bribery cases that were reported to them.
+
+NOTE: The texts will be tested before the experiment, and may be subjected to changes.
+
 
 #### 1.4 Prediction
 
