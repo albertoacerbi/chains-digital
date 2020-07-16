@@ -3,8 +3,8 @@ title: "Preregistration-plan"
 author: "Alberto Acerbi"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 bibliography: biblio.bib
 ---
 
@@ -102,8 +102,8 @@ negative <- negative %>%
   mutate(proportion = replace(proportion, proportion > 1, 1)) %>%
   mutate(proportion = replace(proportion, proportion < 0, 0))
 
-# palette friendly to colorblind people (https://jfly.uni-koeln.de/color/)
-cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+# palette friendly to colorblind:
+cbPalette <- c("#D55E00", "#56B4E9", "#E69F00", "#009E73", "#999999", "#CC79A7")
 # plot the proportion of sentence correctly retained:
 negative %>%
   ggplot(aes(x = chain_position, y = proportion, colour = content)) + 
@@ -112,8 +112,8 @@ negative %>%
     stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.05, size = 1) + 
     theme_bw() + 
     ylim(0,1) +
-    scale_colour_manual(values = cbbPalette) +
-    labs(x = "Chain position", y = "Proportion of propositions transmitted", title = "Negative attractor") 
+    scale_colour_manual(values = cbPalette) +
+    labs(x = "Chain position", y = "Proportion of propositions transmitted", title = "Attractor: Negative information") 
 ```
 
 Here the output of the model:
@@ -183,7 +183,7 @@ anonymous %>%
   ggplot(aes(x = attractor, fill = content)) +
     geom_bar(position = "dodge") + 
     theme_bw() + 
-    scale_fill_manual(values = cbbPalette) +
+    scale_fill_manual(values = cbPalette) +
     labs(x = "Type of attractive content", y = "Number of shares", title = "Anomymous sharing") 
 ```
 
