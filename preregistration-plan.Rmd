@@ -3,8 +3,8 @@ title: "Preregistration-plan"
 author: "Alberto Acerbi"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 bibliography: biblio.bib
 ---
 
@@ -47,7 +47,7 @@ _Attractive_:
 A woman in Oregon hit the \$8 million jackpot at a Lucky Eagle Casino slot machine. Veronica Castillo took her mother to the casino in Rochester, Washington. She put \$100 in a machine and hit the jackpot. The casino staff came over and told her the machine malfunctioned. The woman attempted a legal battle, but she could not claim her money. 
 
 _Neutral_:
-A woman in Oregon hit the \$8 million jackpot at a Lucky Eagle Casino slot machine. Veronica Castillo took her mother to the casino in Rochester, Washington. She put \$100 in a machine and hit the jackpot.The casino staff came over and told her the machine malfunctioned. After a legal battle, the woman was able to claim her money.
+A woman in Oregon hit the \$8 million jackpot at a Lucky Eagle Casino slot machine. Veronica Castillo took her mother to the casino in Rochester, Washington. She put \$100 in a machine and hit the jackpot.The casino staff came over and congratulated her and her mother. It was the highest win from the opening of the casino.
 
 ##### Disgust
 
