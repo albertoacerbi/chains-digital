@@ -3,8 +3,8 @@ title: "Preregistration-plan"
 author: "Alberto Acerbi"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 bibliography: biblio.bib
 ---
 
@@ -37,7 +37,7 @@ N=540 participants recruited through Prolific (180 for each condition).
 #### 1.2 Procedure
 
 For each attractor, I will run 60 independent chains of transmission, each including three participants each (three iterations is standard in transmission chains experiments [see e.g. @stubbersfield_serial_2015]). Thirty chains will involve the attractive content, and the other 30 chains will involve a neutral version of a similar content. 
-For each transmission chain, participant 1 reads online the original text, a short story of five/six sentences (after collecting basic demographic data). Then, they rewrite the story as if retelling it to a friend. The text generated is then provided to participant 2 who does the same and pass it to participant 3, who repeats. The experiment will be realised with the software *Qualtrics*.
+For each transmission chain, participant 1, after collecting basic demographic data, reads online the original text, a short story of five/six sentences. Then, they are asked to rewrite the story as best as they can. Notice participants are not told that they are part of a transmission chain. This is done to focus on the recall/reproduction aspects. The text generated is then provided to participant 2 who does the same and pass it to participant 3, who repeats. The experiment will be realised with the software *Qualtrics*.
 
 #### 1.3 Material
 
@@ -60,13 +60,14 @@ A major outbreak of chickenpox has been reported in the US. The outbreak is the 
 ##### Threat
 
 _Attractive_:
-The FBI reported increases in the violent crime rate between 2017 and 2019. Violent crime includes offenses such as rape, robbery and assault. Most of the crimes that are reported to police are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of violent crimes that were reported to them.
+The FBI reported increases in the violent crime rate between 2017 and 2019. Violent crime includes offences such as rape, robbery and assault. Most of the crimes that are reported to police are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of violent crimes that were reported to them.
 
 _Neutral_:
 The FBI reported increases in corporate bribery between 2017 and 2019. Corporate bribery means giving a reward to influence someone's behaviour. Most of the bribery cases that are reported are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of bribery cases that were reported to them.
 
 NOTE: The texts will be tested before the experiment, and may be subjected to changes.
 
+<!-- Be more specific about pre-test? E.g. I could ask participants to rate the stories for their [attractor] content. E.g. How negative is story 1? How negative is story 2? How disgusting is story 3? How disgusting is story 4? Is story 5 about threats? Is story 6 about threats? -->
 
 #### 1.4 Prediction
 
@@ -74,7 +75,7 @@ In each condition, i.e. for each attractor, the attractive content will be bette
 
 #### 1.5 Analysis
 
-The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package [@lme4_2015].
+The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. Texts scoring 0, i.e. no sequences correctly retained, will be excluded by the analysis. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package [@lme4_2015].
 
 See below the code for the analysis and the plots with simulated data (only for one condition, this will be replicated three times for each attractor). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *no* difference between contents (to test with difference, uncomment the pertinent lines in the code below).
 
@@ -137,8 +138,10 @@ N=600 participants recruited through Prolific (300 for each condition).
 
 #### 2.2 Procedure
 
-After collecting basic demographic information, each participant will be presented with three texts, one for each of the attractors analysed in experiment 1 (negative, disgust-eliciting, and threat-related). At random, each text will be either the story with the attractive content present or its neutral counterpart (the order of presentation of the texts will be also randomised).
-In the first condition, participants will be asked, for each story, whether they would share it or not anonymously in a large social network. In the second condition, they will be asked if they would share the story to their friends, in their favourite social network. The experiment will be realised with the software *Qualtrics*.  
+After collecting basic demographic information, each participant will be presented with three texts, one for each of the attractors analysed in experiment 1 (negative, disgust-eliciting, and threat-related). In a within subject design, each text will be, randomly, either the story with the attractive content present or its neutral counterpart (the order of presentation of the texts will be also randomised).
+In the first condition, participants will be asked, for each story, whether they would share it or not anonymously in a large social network. In the second condition, they will be asked if they would share the story to their friends, in their favourite social network. The experiment will be realised with the software *Qualtrics*. 
+
+<!-- AW: "You could do this within subjects. Ask them both if they would share anonymously and with friends. Just randomize which question comes first.” —> It makes sense, I am just worried that it would be obvious to participants what the point of the experiment is. -->
 
 #### 2.3 Materials
 
@@ -147,6 +150,8 @@ The same six texts used in experiment 1.
 #### 2.4 Prediction
 
 There is no specific prediction, but the research question is whether in each condition (anonymous/friends), and for each attractor, the attractive content will be shared more than the neutral content.
+
+<!-- AW: "Are you sure you don’t want to make a prediction?” —> Is that important? Of course I could predict that "attractive” texts will be also shared more (even if I do not know as there is no specific previous literature), but would this change something e.g. for the analysis? -->
 
 #### 2.5 Analysis
 
@@ -197,6 +202,8 @@ coef(summary(negative_model))
 ```
 
 As expected, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, Z(300) = `r {coef(summary(negative_model))[2,3]}`, p = `r {coef(summary(negative_model))[2,4]}`).  
+
+<!-- ACKNOWLEDGMENTS: Sacha Altay, Joe Stubbersfield, and Aiyana Willard provided feedback on the pre-registration plan -->
 
 ## References
 
