@@ -37,7 +37,7 @@ N=540 participants recruited through Prolific (180 for each condition).
 #### 1.2 Procedure
 
 For each attractor, I will run 60 independent chains of transmission, each including three participants each (three iterations is standard in transmission chains experiments [see e.g. @stubbersfield_serial_2015]). Thirty chains will involve the attractive content, and the other 30 chains will involve a neutral version of a similar content. 
-For each transmission chain, participant 1, after collecting basic demographic data, reads online the original text, a short story of five/six sentences. Then, they are asked to rewrite the story as best as they can. Notice participants are not told that they are part of a transmission chain. This is done to focus on the recall/reproduction aspects. The text generated is then provided to participant 2 who does the same and pass it to participant 3, who repeats. The experiment will be realised with the software *Qualtrics*.
+For each transmission chain, participant 1, after collecting basic demographic data, reads online the original text, a short story of five/six sentences. Then, they are asked to rewrite the story as they were retelling it to a friend. This is done to keep the communicative intention (as in experiment 2) while focusing on the recall/reproduction aspects. The text generated is then provided to participant 2 who does the same and pass it to participant 3, who repeats. The experiment will be realised with the software *Qualtrics*.
 
 #### 1.3 Material
 
@@ -75,7 +75,7 @@ In each condition, i.e. for each attractor, the attractive content will be bette
 
 #### 1.5 Analysis
 
-The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. Texts scoring 0, i.e. no sequences correctly retained, will be excluded by the analysis. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package [@lme4_2015].
+The texts produced by the participants at each steps of the chains will be analysed by two independent coders using propositional analysis, the output of which is the proportion of sentences correctly retained with respect to the target, original, text. We will exclude from the analysis texts with a number of words that appear too small, where "too small" will be determined in the tests before the experiment. The three resultant datasets (one for each attractor) will be analysed using linear mixed models, with position in the chain and content (attractive/neutral) as fixed effects, and each chain ID as random effect. The analysis will be performed in R, using the lme4 package [@lme4_2015].
 
 See below the code for the analysis and the plots with simulated data (only for one condition, this will be replicated three times for each attractor). For the simulated data, I simply assume that proportions are normally distributed (and truncated between 0 and 1). The mean decreases along the chain position (i.e. participants reproduce less sentences) but there is *no* difference between contents (to test with difference, uncomment the pertinent lines in the code below).
 
