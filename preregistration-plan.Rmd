@@ -32,7 +32,7 @@ The first experiment is an online study that will investigate whether specific a
 
 #### 1.1 Participants
 
-N=540 participants recruited through Prolific (180 for each condition).
+N=540 UK participants recruited through Prolific (180 for each condition).
 
 #### 1.2 Procedure
 
@@ -65,9 +65,7 @@ The FBI reported increases in the violent crime rate between 2017 and 2019. Viol
 _Neutral_:
 The FBI reported increases in corporate bribery between 2017 and 2019. Corporate bribery means giving a reward to influence someone's behaviour. Most of the bribery cases that are reported are not solved. This is based on an FBI measure known as the “clearance rate.” In 2018, police nationwide cleared less than half of bribery cases that were reported to them.
 
-NOTE: The texts will be tested before the experiment, and may be subjected to changes.
-
-<!-- Be more specific about pre-test? E.g. I could ask participants to rate the stories for their [attractor] content. E.g. How negative is story 1? How negative is story 2? How disgusting is story 3? How disgusting is story 4? Is story 5 about threats? Is story 6 about threats? -->
+**NOTE**: The texts will be tested before the experiment, and may be subjected to changes. Pre-tests will include (i) rating of the attractiveness of the Neutral/Attractive story for each condition (e.g. "How negative is [story Negative-Attractive]?", "How negative is [story Negative-Neutral]?") and (ii) non-iterated, one-participant, versions of experiment 1, to ensure that the texts are reproduced to a sufficient degree. 
 
 #### 1.4 Prediction
 
@@ -134,7 +132,7 @@ The second experiment is again an online study, and it will test whether the sam
 
 #### 2.1 Participants
 
-N=600 participants recruited through Prolific (300 for each condition).
+N=600 UK participants recruited through Prolific (300 for each condition).
 
 #### 2.2 Procedure
 
@@ -203,7 +201,9 @@ coef(summary(negative_model))
 
 As expected, there is no effect of content ($\beta$ = `r {coef(summary(negative_model))[2,1]}`, SE = `r {coef(summary(negative_model))[2,2]}`, Z(300) = `r {coef(summary(negative_model))[2,3]}`, p = `r {coef(summary(negative_model))[2,4]}`).  
 
-<!-- ACKNOWLEDGMENTS: Sacha Altay, Joe Stubbersfield, and Aiyana Willard provided feedback on the pre-registration plan -->
+### Acknowledgements
+
+Sacha Altay, Micheal de Barra, Manon Berriche, Joe Stubbersfield, and Aiyana Willard provided feedback on earlier versions of this pre-registration plan.
 
 ## References
 
